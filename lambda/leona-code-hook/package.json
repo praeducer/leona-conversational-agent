@@ -1,0 +1,23 @@
+{
+  "name": "leonacodehook",
+  "version": "1.0.0",
+  "description": "AWS Lambda function",
+  "main": "LeonaCodeHook.js",
+  "devDependencies": {
+    "aws-sdk": "latest",
+    "grunt": "0.4.*",
+    "grunt-pack": "0.1.*",
+    "grunt-aws-lambda": "0.8.0",
+    "npm": "^2.8.3"
+   },
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/praeducer/leona-conversational-agent"
+  },
+  "author": "paul.prae@outlook.com",
+  "license": "ISC",
+  "homepage": "http://leona.chat/"
+}

@@ -1,0 +1,17 @@
+{
+  "currentIntent": {
+    "slots": {},
+    "name": "Hello",
+    "confirmationStatus": "None"
+  },
+  "bot": {
+    "alias": "$LATEST",
+    "version": "$LATEST",
+    "name": "Leona"
+  },
+  "userId": "Paul",
+  "invocationSource": "DialogCodeHook",
+  "outputDialogMode": "Text",
+  "messageVersion": "1.0",
+  "sessionAttributes": {}
+}

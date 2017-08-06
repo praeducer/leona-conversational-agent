@@ -1,0 +1,28 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1442787227063",
+      "Action": [
+        "lambda:GetFunction",
+        "lambda:UploadFunction",
+        "lambda:UpdateFunctionCode",
+        "lambda:UpdateFunctionConfiguration",
+        "lambda:GetAlias",
+        "lambda:UpdateAlias",
+        "lambda:CreateAlias",
+        "lambda:PublishVersion"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:lambda:*"
+    },
+    {
+      "Sid": "Stmt1442787265773",
+      "Action": [
+        "iam:PassRole"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:iam::<my_account_id>:role/<my_role_name>"
+    }
+  ]
+}
