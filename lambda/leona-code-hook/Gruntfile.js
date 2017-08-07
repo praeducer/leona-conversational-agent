@@ -20,7 +20,7 @@ grunt.initConfig({
    lambda_deploy: {
       default: {
           // TODO: The ARN of your target Lambda function.
-         //arn: 'arn:aws:lambda:us-east-1:800754320539:function:AIVACodeHook',
+         arn: 'arn:aws:lambda:us-east-1:780834403986:function:LeonaCodeHook',
          options: {
              // Sets the handler for your lambda function. If left null, the current setting will remain unchanged.
              //handler: 'LeonaCodeHook.handler'

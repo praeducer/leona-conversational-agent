@@ -2,8 +2,10 @@
 
  /**
   * To deploy, run: grunt deploy --verbose
+  * Most helpful references:
+  *     http://docs.aws.amazon.com/lex/latest/dg/lambda-input-response-format.html#using-lambda-response-format
+  *     https://github.com/awslabs/aws-lex-convo-bot-example/blob/master/index.js
   */
-
 
  // --------------- Helpers to build responses which match the structure of the necessary dialog actions -----------------------
 function elicitIntent(sessionAttributes, messageContent) {
@@ -177,11 +179,42 @@ function buildResponseCard(title, subTitle, options) {
  * Performs dialog management and fulfillment.
  */
 function hello(intentRequest, callback) {
-    // Display the content, and rely on the goodbye message of the bot to define the message to the end user.
     callback(elicitIntent(intentRequest.sessionAttributes,
         `Hello!`
     ));
 }
+function search(intentRequest, callback) {
+
+    // If search term is null, ask what they'd like to search for
+    if(!intentRequest.currentIntent.slots.AIConcept){
+        callback(elicitSlot(
+            intentRequest.sessionAttributes, // sessionAttributes
+            intentRequest.currentIntent.name, // intentName
+            intentRequest.currentIntent.slots, // slots
+            'AIConcept', // slotToElicit
+            null // message
+        ));
+    }
+
+    // TODO: If search term is not null and saved item is null, display list of results for user to select.
+    if(!intentRequest.currentIntent.slots.Item){
+        callback(elicitSlot(
+            intentRequest.sessionAttributes, // sessionAttributes
+            intentRequest.currentIntent.name, // intentName
+            intentRequest.currentIntent.slots, // slots
+            'Item', // slotToElicit
+            {
+              contentType: 'PlainText',
+              content: "test"
+            }
+        ));
+    }
+
+    // TODO: if both search term and saved item are there, complete the request.
+
+
+}
+
 
  // --------------- Intents -----------------------
 
@@ -192,10 +225,15 @@ function dispatch(intentRequest, callback) {
     console.log(`dispatch userId=${intentRequest.userId}, intentName=${intentRequest.currentIntent.name}`);
 
     const intentName = intentRequest.currentIntent.name;
+    const sessionAttributes = intentRequest.sessionAttributes;
+    const slots = intentRequest.currentIntent.slots;
 
     // Dispatch to your skill's intent handlers
     if (intentName === 'Hello') {
         return hello(intentRequest, callback);
+    }
+    if (intentName === 'Search') {
+        return search(intentRequest, callback);
     }
     throw new Error(`Intent with name ${intentName} not supported`);
 }
